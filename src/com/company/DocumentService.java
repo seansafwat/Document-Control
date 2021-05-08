@@ -21,7 +21,7 @@ public class DocumentService {
         System.out.println("Cadastrar de documentos:");
         Document document = new Document();
 
-        int maxCode = 0;
+        int maxCode;
         if (listDocument == null || listDocument.size() == 0){
             maxCode = 1;
         }
@@ -35,7 +35,7 @@ public class DocumentService {
         String serie = is.next();
         document.serie   = (!serie.isEmpty())? serie: "";
 
-        DateFormat format = new SimpleDateFormat("dd/mm/yyyy", new Locale("pt", "BR"));
+        DateFormat format = new SimpleDateFormat("dd/MM/yyyy", new Locale("pt", "BR"));
 
         while (document.dataEmissao == null){
             String text = screenController.ReadInformationOnScreen(is,"Data de Emissão:");
@@ -91,6 +91,7 @@ public class DocumentService {
     public void listarDocument(List<Document> listDocument){
         listDocument.forEach(document -> System.out.println("Código:"+document.codigo + " - Série:"+document.serie+
                                                             " - Data de emissão:"+ new SimpleDateFormat("dd/MM/yyyy", new Locale("pt", "BR")).format(document.dataEmissao) +
+                                                            " - Data entrada:"+ new SimpleDateFormat("dd/MM/yyyy", new Locale("pt", "BR")).format(document.dataEntrada) +
                                                             " - Valor:"+document.valor));
     }
 
